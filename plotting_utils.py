@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 def plot_profile(v: np.ndarray, title_text: str="Speed Profile", **kwargs) -> plt.Figure:
-    fig = plt.figure(dpi=300)
+    fig = plt.figure(dpi=300, figsize=(5,3))
     plt.imshow(v, **kwargs)
     plt.colorbar()
     plt.title(title_text)
@@ -28,7 +28,7 @@ def plot_quiver(vx: np.ndarray, vy: np.ndarray, title_text: str="Velocity Field"
     # vy[v == 0] = np.nan
     vx_copy = vx.copy()
     vy_copy = vy.copy()
-    fig = plt.figure(dpi=300)
+    fig = plt.figure(dpi=300, figsize=(5,3))
     binary, fig = plot_binary(vx, cmap="Pastel1")
     vx_copy[binary == 0] = np.nan
     vy_copy[binary == 0] = np.nan
@@ -50,7 +50,7 @@ def plot_streamlines(v_x: np.ndarray, v_y: np.ndarray, title_text: str="Streamli
     start_x = np.zeros_like(start_y)
     start_point_array = np.array([start_x, start_y]).T
     
-    fig = plt.figure(dpi=300)
+    fig = plt.figure(dpi=300, figsize=(5,3))
     # plt.imshow(uv, cmap='Pastel1')
     _, fig = plot_binary(v_x, cmap="Pastel1")
     plt.streamplot(x1, y1, v_x, v_y, start_points=start_point_array, **kwargs)
@@ -62,7 +62,7 @@ def plot_streamlines(v_x: np.ndarray, v_y: np.ndarray, title_text: str="Streamli
 
 def plot_binary(vel_data: np.ndarray, **kwargs) -> plt.Figure():
     binary = vel_data != 0
-    fig = plt.figure(dpi=300)
+    fig = plt.figure(dpi=300, figsize=(5,3))
     plt.imshow(binary, **kwargs)
     
     return binary, fig
